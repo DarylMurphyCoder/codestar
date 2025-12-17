@@ -1,1 +1,13 @@
-﻿django-blog/
+core.Microsoft*
+core.mongo*
+core.python*
+env.py
+__pycache__/
+*.py[cod]
+*.pyc
+node_modules/
+.github/
+cloudinary_python.txt
+.venv
+db.sqlite3
+*.sqlite3
