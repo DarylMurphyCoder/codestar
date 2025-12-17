@@ -24,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-change-in-production')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','.herokuapp.com',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.herokuapp.com']
 
 
 # Application definition
@@ -79,10 +80,19 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Use DATABASE_URL if present (Heroku), else fall back to local sqlite3
-DATABASES = {
-    'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
-}
+# Use DATABASE_URL if present (Heroku/Neon) with SSL; else use local sqlite3 without SSL options
+db_url = os.environ.get('DATABASE_URL')
+if db_url and db_url.strip():
+    DATABASES = {
+        'default': dj_database_url.parse(db_url, conn_max_age=600, ssl_require=True)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -121,6 +131,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Ensure Django recognizes HTTPS behind Heroku's proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
