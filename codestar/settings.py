@@ -12,12 +12,19 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import sys
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Add codestar directory to path for env.py import
+sys.path.insert(0, str(BASE_DIR / 'codestar'))
+
+# Try to import env.py for development settings
+env_path = BASE_DIR / 'codestar' / 'env.py'
+if env_path.exists():
+    import env
 
 
 # Quick-start development settings - unsuitable for production
