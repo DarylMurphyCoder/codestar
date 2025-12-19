@@ -1,8 +1,10 @@
-﻿from django.contrib import admin
-from django.urls import path
-from blog.views import my_blog
+"""
+URL configuration for codestar project.
+"""
+from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('blog/', my_blog, name='blog'),
+    path("admin/", admin.site.urls),
+    path("", include("blog.urls"), name="blog-urls"),
 ]
