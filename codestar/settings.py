@@ -160,6 +160,13 @@ SUMMERNOTE_CONFIG = {
         'width': '100%',
         'height': '480',
     },
+    'toolbar': [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['insert', ['link', 'picture']],
+        ['view', ['fullscreen', 'codeview']],
+    ],
 }
 
 # Default primary key field type
