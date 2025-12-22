@@ -155,7 +155,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Summernote configuration
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_CONFIG = {
-    'iframe': True,
+    'iframe': False,
     'summernote': {
         'width': '100%',
         'height': '480',
