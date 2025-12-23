@@ -11,3 +11,7 @@ cloudinary_python.txt
 .venv
 db.sqlite3
 *.sqlite3
+blog/fixtures/*
+!blog/fixtures/
+!blog/fixtures/posts.json
+!blog/fixtures/extra_posts.json

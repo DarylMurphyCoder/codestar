@@ -1,0 +1,44 @@
+[
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "title": "My First Blog Post",
+      "slug": "my-first-blog-post",
+      "author": 1,
+      "content": "This is the content of my first blog post. It contains some interesting information.",
+      "created_on": "2025-12-22T10:30:00Z",
+      "status": 1,
+      "excerpt": "This is an excerpt of my first blog post.",
+      "updated_on": "2025-12-22T10:30:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "title": "Django Tips and Tricks",
+      "slug": "django-tips-and-tricks",
+      "author": 1,
+      "content": "Here are some useful Django tips and tricks to improve your development workflow.",
+      "created_on": "2025-12-22T11:00:00Z",
+      "status": 1,
+      "excerpt": "Useful Django tips for developers.",
+      "updated_on": "2025-12-22T11:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "title": "Getting Started with Django",
+      "slug": "getting-started-with-django",
+      "author": 1,
+      "content": "A beginner's guide to Django web framework. Learn the basics and build your first application.",
+      "created_on": "2025-12-22T09:15:00Z",
+      "status": 1,
+      "excerpt": "A beginner's guide to Django.",
+      "updated_on": "2025-12-22T09:15:00Z"
+    }
+  }
+]
