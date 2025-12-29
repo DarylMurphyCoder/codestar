@@ -1,0 +1,10 @@
+[
+  {
+    "model": "about.about",
+    "pk": 1,
+    "fields": {
+      "title": "About Me",
+      "content": "<p>Welcome to my blog. I write about coding, tooling, and developer workflows.</p>"
+    }
+  }
+]
