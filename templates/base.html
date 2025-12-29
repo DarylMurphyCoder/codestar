@@ -97,6 +97,16 @@
 
     <main class="flex-shrink-0 main-bg">
 
+        {% if user.is_authenticated %}
+        <div class="alert alert-info mt-3 mx-3">
+            Welcome back, <strong>{{ user.username }}</strong>!
+        </div>
+        {% else %}
+        <div class="alert alert-warning mt-3 mx-3">
+            You are not logged in
+        </div>
+        {% endif %}
+
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
