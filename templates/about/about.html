@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="about-section">
+    <h1>{{ about.title }}</h1>
+    {% if about.profile_image %}
+      <img src="{{ about.profile_image.url }}" alt="Profile Image" style="max-width:200px;">
+    {% endif %}
+    <div class="about-content">
+      {{ about.content|linebreaks }}
+    </div>
+  </div>
+
+  <div class="collaborate-section mt-5">
+    <h2>Collaborate with Me</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ collaborate_form|crispy }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+{% endblock %}

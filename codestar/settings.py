@@ -33,10 +33,35 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Set DEBUG based on environment variable, default to False for production
+DEBUG = True
+# Basic logging configuration to output errors to the console
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
-ALLOWED_HOSTS = ['.herokuapp.com',
-                 '127.0.0.1',]
+ALLOWED_HOSTS = [
+    '.herokuapp.com',
+    '127.0.0.1',
+    'codestar-blog-app-ffec4df5d03f.herokuapp.com',
+]
 
 
 # Application definition
@@ -57,7 +82,12 @@ INSTALLED_APPS = [
     'cloudinary',
     'blog',
     'about',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
+
+# Django Crispy Forms settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -73,6 +103,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'codestar.middleware.LogExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'codestar.urls'
@@ -83,6 +114,7 @@ TEMPLATES = [
         'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': True,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -92,6 +124,9 @@ TEMPLATES = [
         },
     },
 ]
+
+ # Enable template debugging globally
+TEMPLATE_DEBUG = True
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
 
